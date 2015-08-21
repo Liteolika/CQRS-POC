@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>CQRS-POC</title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/toastr.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container" ng-controller="mainController as vm">
+
+        <div class="row">
+            <div class="col-md-12">
+                {{ vm.title }}
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4">
+
+                DeviceId: {{ vm.selectedDevice.id }}<br />
+                Hostname: <input type="text" ng-model="vm.selectedDevice.hostname" /><br />
+                Version: {{ vm.selectedDevice.version }}<br />
+                <input type="button" value="Update" ng-click="vm.updateDevice()" /><br />
+
+            </div>
+
+            <div class="col-md-8">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Hostname</th>
+                            <th>Version</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="device in vm.devices" ng-click="vm.selectDevice(device)">
+                        <td>{{ device.id }}</td>
+                        <td>{{ device.hostname }}</td>
+                        <td>{{ device.version }}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="signalr/hubs"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="App/app.js"></script>
+    <script src="App/mainController.js"></script>
+    <script src="App/messageProxy.js"></script>
+
+    <script src="Scripts/toastr.js"></script>
+
+</body>
+
+</html>
