@@ -27,10 +27,10 @@ namespace CQRS.App
 
             IServiceBus serviceBus = ServiceBusFactory.New(cfg =>
             {
-                cfg.ReceiveFrom("rabbitmq://140.150.92.206/cqrs-poc");
+                cfg.ReceiveFrom("rabbitmq://localhost/cqrs-poc");
                 cfg.UseRabbitMq(cf =>
                 {
-                    cf.ConfigureHost(new Uri("rabbitmq://140.150.92.206/cqrs-poc"), hc =>
+                    cf.ConfigureHost(new Uri("rabbitmq://localhost/cqrs-poc"), hc =>
                     {
                         hc.SetUsername("petcar");
                         hc.SetPassword("?!Krone2009");
