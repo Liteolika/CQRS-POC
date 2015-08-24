@@ -69,18 +69,18 @@
             this.lstDevices.AllowUserToDeleteRows = false;
             this.lstDevices.AllowUserToResizeRows = false;
             this.lstDevices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lstDevices.Location = new System.Drawing.Point(339, 30);
+            this.lstDevices.Location = new System.Drawing.Point(13, 99);
             this.lstDevices.MultiSelect = false;
             this.lstDevices.Name = "lstDevices";
             this.lstDevices.ReadOnly = true;
             this.lstDevices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.lstDevices.Size = new System.Drawing.Size(368, 150);
+            this.lstDevices.Size = new System.Drawing.Size(654, 150);
             this.lstDevices.TabIndex = 3;
             this.lstDevices.SelectionChanged += new System.EventHandler(this.lstDevices_SelectionChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(339, 187);
+            this.button3.Location = new System.Drawing.Point(13, 270);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 4;

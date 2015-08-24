@@ -14,7 +14,8 @@ namespace CQRS.Domain
 {
     public class NetworkDeviceCommandHandler : 
         ICommandHandler<CreateNetworkDevice>,
-        ICommandHandler<ChangeNetworkDeviceHostName>
+        ICommandHandler<ChangeNetworkDeviceHostName>,
+        ICommandHandler<NetworkDeviceSetStatus>
     {
 
         private readonly ISession _session;
@@ -73,5 +74,19 @@ namespace CQRS.Domain
             }
         }
 
+        public void Handle(NetworkDeviceSetStatus message)
+        {
+            try
+            {
+                NetworkDevice device = _session.Get<NetworkDevice>(message.Id);
+                device.IsOnline(message.IsOnline);
+                _session.Commit(message.CommandId);
+                SendNotification(message, true, "Network device updated successfully");
+            }
+            catch (Exception ex)
+            {
+                SendNotification(message, false, "Could not set online status", ex);
+            }
+        }
     }
 }

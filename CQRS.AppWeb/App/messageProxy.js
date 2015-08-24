@@ -30,6 +30,7 @@
 
         function onRecieveMessage() {
             messageHub.client.messageRecieved = function (message) {
+                console.log(message.Message);
                 var data = { message: message };
                 $rootScope.$broadcast('MESSAGE_RECEIVED', data);
                 $rootScope.$apply();

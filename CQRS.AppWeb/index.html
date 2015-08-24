@@ -3,6 +3,10 @@
 <head>
     <title>CQRS-POC</title>
     <meta charset="utf-8" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
+
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/toastr.css" rel="stylesheet" />
 </head>
@@ -33,12 +37,14 @@
                             <th>Id</th>
                             <th>Hostname</th>
                             <th>Version</th>
+                            <th>Online</th>
                         </tr>
                     </thead>
                     <tr ng-repeat="device in vm.devices" ng-click="vm.selectDevice(device)">
                         <td>{{ device.id }}</td>
                         <td>{{ device.hostname }}</td>
                         <td>{{ device.version }}</td>
+                        <td>{{ device.isOnline }}</td>
                     </tr>
                 </table>
             </div>

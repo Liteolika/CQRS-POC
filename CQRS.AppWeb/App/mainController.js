@@ -53,15 +53,24 @@
 
         var onReceiveMessage = function () {
             $scope.$on('MESSAGE_RECEIVED', function (event, data) {
-                toastr.info(data.message, 'New Message: ' + data.message);
-
+                toastr.info(data.message.Message, 'New Message: ' + data.message.Message);
                 $scope.$apply(function () {
-                    getDevices();
+                    //getDevices();
+                    $http({
+                        method: 'GET',
+                        url: '/api/device'
+                    }).then(function (response) {
+                        vm.devices = response.data;
+                        var a = 1;
+                    }, function (error) {
+                        var a = 1;
+                    });
                 });
+                
             });
 
             $scope.$on('MESSAGE_CONNECTION_STARTED', function (event, data) {
-                var a = 1;
+                toastr.info("Message connection started", "Message connection started");
             });
         }
 

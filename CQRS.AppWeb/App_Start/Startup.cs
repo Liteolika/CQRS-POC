@@ -50,12 +50,9 @@ namespace CQRS.AppWeb
             var bus = container.GetInstance<IServiceBus>();
             var notifier = container.GetInstance<MessageNotifier>();
             bus.SubscribeHandler<HandlerNotification>(notifier.Handle);
-
+            
         }
-
-        
-
-        
+     
 
     }
 

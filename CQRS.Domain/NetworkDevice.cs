@@ -12,17 +12,21 @@ namespace CQRS.Domain
     {
 
         private string hostname;
+        private bool online;
 
         private void Apply(NetworkDeviceCreated e)
         {
-            //Version = e.Version;
             hostname = e.Hostname;
         }
 
         private void Apply(NetworkDeviceHostnameChanged e)
         {
-            //Version = e.Version;
             hostname = e.NewHostname;
+        }
+
+        private void Apply(NetworkDeviceOnlineStatusChanged e)
+        {
+            online = e.IsOnline;
         }
 
 
@@ -30,7 +34,7 @@ namespace CQRS.Domain
         {
             RegisterTransition<NetworkDeviceCreated>(Apply);
             RegisterTransition<NetworkDeviceHostnameChanged>(Apply);
-        
+            RegisterTransition<NetworkDeviceOnlineStatusChanged>(Apply);
         }
 
         public NetworkDevice(Guid id, string hostname)
@@ -45,5 +49,11 @@ namespace CQRS.Domain
                 throw new ArgumentException("newHostname");
             ApplyChange(new NetworkDeviceHostnameChanged(Id, Version, newHostname));
         }
+
+        public void IsOnline(bool isOnline)
+        {
+            ApplyChange(new NetworkDeviceOnlineStatusChanged(Id, Version, isOnline));
+        }
+
     }
 }

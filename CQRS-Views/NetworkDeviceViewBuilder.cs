@@ -12,7 +12,8 @@ namespace CQRS_Views
 {
     public class NetworkDeviceViewBuilder : 
         IEventHandler<NetworkDeviceCreated>,
-        IEventHandler<NetworkDeviceHostnameChanged>
+        IEventHandler<NetworkDeviceHostnameChanged>,
+        IEventHandler<NetworkDeviceOnlineStatusChanged>
     {
 
         
@@ -62,6 +63,17 @@ namespace CQRS_Views
             using (var db = new DataBase())
             {
                 return db.NetworkDevices.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        public void Handle(NetworkDeviceOnlineStatusChanged message)
+        {
+            using (var db = new DataBase())
+            {
+                var device = db.NetworkDevices.Where(x => x.Id == message.Id).FirstOrDefault();
+                device.Version = message.Version;
+                device.IsOnline = message.IsOnline;
+                db.SaveChanges();
             }
         }
     }

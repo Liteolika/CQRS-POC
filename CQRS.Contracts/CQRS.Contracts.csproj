@@ -45,6 +45,8 @@
     <Compile Include="EventBase.cs" />
     <Compile Include="NetworkDeviceCreated.cs" />
     <Compile Include="NetworkDeviceHostnameChanged.cs" />
+    <Compile Include="NetworkDeviceOnlineStatusChanged.cs" />
+    <Compile Include="NetworkDeviceSetStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

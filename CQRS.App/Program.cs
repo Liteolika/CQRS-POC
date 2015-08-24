@@ -58,6 +58,23 @@ namespace CQRS.App
             Thread.Sleep(4000);
             //var id = Guid.NewGuid();
             //service.CreateDevice(id, "SESM-1");
+
+            Random rnd = new Random();
+
+            for (int i = 0; i < 100; i++)
+            {
+                var r = rnd.Next(1000, 6000);
+                Thread.Sleep(r);
+                var devices = ndvb.GetDevices();
+                foreach (var device in devices)
+                {
+                    var online = r % 2 == 0;
+                    service.SetDeviceStatus(device.Id, online);
+                }
+                
+                    
+            }
+
             //Thread.Sleep(3000);
             //service.CreateDevice(id, "SESM-1");
 

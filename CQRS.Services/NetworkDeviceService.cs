@@ -40,6 +40,12 @@ namespace CQRS.Services
             PublishCommand(command);
         }
 
+        public void SetDeviceStatus(Guid id, bool isOnline)
+        {
+            var command = new NetworkDeviceSetStatus(id, isOnline);
+            PublishCommand(command);
+        }
+
         private void PublishCommand(ICommand command)
         {
             command.ClientId = clientId;

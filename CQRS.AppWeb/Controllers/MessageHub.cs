@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.SignalR;
 using CQRS.Infrastructure.Events;
 using CQRS.Infrastructure.Notifications;
+using System.Diagnostics;
 
 namespace CQRS.AppWeb.Controllers
 {
@@ -20,8 +21,9 @@ namespace CQRS.AppWeb.Controllers
     {
         public void Handle(HandlerNotification message)
         {
+            Debug.WriteLine("MessageNotifier: " + message.Message);
             var hub = GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
-            hub.Clients.All.messageRecieved(message.Message);
+            hub.Clients.All.messageRecieved(message);
         }
     }
 

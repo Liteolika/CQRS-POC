@@ -57,9 +57,11 @@ namespace CQRS.Services
 
             _bus.SubscribeHandler<CreateNetworkDevice>(_ndch.Handle);
             _bus.SubscribeHandler<ChangeNetworkDeviceHostName>(_ndch.Handle);
+            _bus.SubscribeHandler<NetworkDeviceSetStatus>(_ndch.Handle);
 
             _bus.SubscribeHandler<NetworkDeviceCreated>(_ndvb.Handle);
             _bus.SubscribeHandler<NetworkDeviceHostnameChanged>(_ndvb.Handle);
+            _bus.SubscribeHandler<NetworkDeviceOnlineStatusChanged>(_ndvb.Handle);
         }
 
         public void Stop()
